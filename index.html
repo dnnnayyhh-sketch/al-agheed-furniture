@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>مفروشات الأغيد | الفخامة والأناقة في عالم الأثاث</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-main: #0c1410;
+      --card-bg: #131e18;
+      --card-border: rgba(198, 169, 123, 0.22);
+      --color-beige: #d8c39e;
+      --color-olive: #8a9a6b;
+      --color-olive-dark: #586840;
+      --text-white: #f8fafc;
+      --text-muted: #9ba89f;
+      --radius: 18px;
+      --transition: all 0.3s ease;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Cairo', system-ui, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-white);
+      line-height: 1.6;
+      padding-bottom: 90px;
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(138, 154, 107, 0.15) 0%, transparent 70%),
+        radial-gradient(circle at 10% 40%, rgba(216, 195, 158, 0.05) 0%, transparent 60%);
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 20px 16px;
+    }
+
+    .header-section {
+      text-align: center;
+      margin-bottom: 24px;
+      position: relative;
+    }
+
+    .logo-frame {
+      width: 140px;
+      height: 140px;
+      margin: 0 auto 16px;
+      border-radius: 50%;
+      padding: 4px;
+      background: linear-gradient(135deg, var(--color-beige), var(--color-olive), var(--color-beige));
+      box-shadow: 0 0 25px rgba(216, 195, 158, 0.25), 0 10px 20px rgba(0,0,0,0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-frame img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      background: #000;
+      display: block;
+    }
+
+    .brand-title {
+      font-size: 1.65rem;
+      font-weight: 900;
+      color: var(--color-beige);
+      margin-bottom: 4px;
+      letter-spacing: 0.5px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+    }
+
+    .brand-subtitle {
+      font-size: 0.88rem;
+      color: var(--color-olive);
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .brand-tagline {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      max-width: 380px;
+      margin: 0 auto 16px;
+    }
+
+    .social-bar {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .social-btn {
+      flex: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #fff;
+      transition: var(--transition);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    .social-btn.fb { background: #1877f2; }
+    .social-btn.ig { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+
+    .vip-badge-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .badge-card {
+      background: rgba(19, 30, 24, 0.7);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 10px 6px;
+      text-align: center;
+    }
+
+    .badge-card i {
+      font-size: 1.1rem;
+      color: var(--color-beige);
+      margin-bottom: 4px;
+      display: block;
+    }
+
+    .badge-card span {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #cbd5e1;
+      display: block;
+    }
+
+    .section-title-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--color-beige);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-title i { color: var(--color-olive); }
+
+    .categories-bar {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      margin-bottom: 18px;
+      scrollbar-width: none;
+    }
+    .categories-bar::-webkit-scrollbar { display: none; }
+
+    .cat-btn {
+      flex: 0 0 auto;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      color: var(--text-muted);
+      padding: 7px 15px;
+      border-radius: 25px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .cat-btn.active {
+      background: linear-gradient(135deg, var(--color-beige), #bfa780);
+      color: #121c16;
+      border-color: var(--color-beige);
+      box-shadow: 0 2px 10px rgba(216, 195, 158, 0.3);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 26px;
+      min-height: 120px;
+    }
+
+    .item-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+    }
+
+    .item-card:active { transform: scale(0.98); }
+
+    .item-img-wrap {
+      width: 100%;
+      height: 160px;
+      background: #000;
+      overflow: hidden;
+    }
+
+    .item-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .item-card:hover .item-img-wrap img { transform: scale(1.05); }
+
+    .item-body {
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      justify-content: space-between;
+    }
+
+    .item-name {
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: var(--text-white);
+      margin-bottom: 4px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .item-category {
+      font-size: 0.72rem;
+      color: var(--color-olive);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .item-inquire-btn {
+      width: 100%;
+      background: rgba(138, 154, 107, 0.15);
+      color: var(--color-beige);
+      border: 1px solid rgba(138, 154, 107, 0.4);
+      padding: 6px;
+      border-radius: 8px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-align: center;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .empty-state {
+      grid-column: 1 / -1;
+      background: rgba(19, 30, 24, 0.4);
+      border: 1px dashed var(--card-border);
+      border-radius: var(--radius);
+      padding: 30px 16px;
+      text-align: center;
+      color: var(--text-muted);
+    }
+
+    .location-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 18px;
+      margin-bottom: 24px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    }
+
+    .info-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .info-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: rgba(138, 154, 107, 0.15);
+      border: 1px solid rgba(138, 154, 107, 0.3);
+      color: var(--color-beige);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .info-content h4 {
+      font-size: 0.85rem;
+      color: var(--color-beige);
+      margin-bottom: 2px;
+    }
+
+    .info-content p {
+      font-size: 0.8rem;
+      color: #cbd5e1;
+    }
+
+    .gps-btn {
+      width: 100%;
+      background: linear-gradient(135deg, var(--color-olive), var(--color-olive-dark));
+      color: #fff;
+      border: none;
+      padding: 12px;
+      border-radius: 12px;
+      font-size: 0.88rem;
+      font-weight: 800;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .fixed-footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(12, 20, 16, 0.95);
+      backdrop-filter: blur(12px);
+      padding: 12px 16px;
+      border-top: 1px solid var(--card-border);
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+    }
+
+    .footer-whatsapp-btn {
+      width: 100%;
+      max-width: 480px;
+      background: linear-gradient(135deg, #25d366, #128c7e);
+      color: #fff;
+      padding: 12px 16px;
+      border-radius: 14px;
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .lightbox-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.94);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      cursor: zoom-out;
+      padding: 16px;
+    }
+
+    .lightbox-modal.active { display: flex; }
+
+    .lightbox-img-wrap {
+      max-width: 95%;
+      max-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: default;
+    }
+
+    .lightbox-img-wrap img {
+      max-width: 100%;
+      max-height: 80vh;
+      border-radius: 14px;
+      border: 1.5px solid var(--color-beige);
+      box-shadow: 0 0 30px rgba(0,0,0,0.8);
+      object-fit: contain;
+    }
+
+    .lightbox-close-hint {
+      color: var(--color-beige);
+      font-size: 0.8rem;
+      margin-top: 12px;
+      opacity: 0.8;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header class="header-section">
+      <div class="logo-frame">
+        <img src="https://i.postimg.cc/BbZfS0fX/1792571358057.jpg" alt="شعار مفروشات الأغيد">
+      </div>
+      <h1 class="brand-title">مفروشات الأغيد</h1>
+      <p class="brand-subtitle">AL AGHEED FURNITURE</p>
+      <p class="brand-tagline">فخامة أثاثك تتحدث عنك.. وجودة تصنيعنا تتحدث عنا. لمسات استثنائية تناسب أصحاب الذوق الرفيع.</p>
+
+      <div class="social-bar">
+        <a href="https://www.facebook.com/share/1CLwTB68zi/" target="_blank" class="social-btn fb">
+          <i class="fab fa-facebook-f"></i> صفحتنا عالفيسبوك
+        </a>
+        <a href="https://www.instagram.com/alagheed_furniture?obrf=MTJwM2I3anJvcXl1cA==" target="_blank" class="social-btn ig">
+          <i class="fab fa-instagram"></i> إنستغرام الأغيد
+        </a>
+      </div>
+
+      <div class="vip-badge-row">
+        <div class="badge-card">
+          <i class="fas fa-couch"></i>
+          <span>خشب زان أصلي</span>
+        </div>
+        <div class="badge-card">
+          <i class="fas fa-paint-brush"></i>
+          <span>تفصيل حسب الطلب</span>
+        </div>
+        <div class="badge-card">
+          <i class="fas fa-truck-moving"></i>
+          <span>شحن لكافة المحافظات</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="section-title-wrap">
+      <div class="section-title">
+        <i class="fas fa-th-large"></i> كتالوج الموديلات
+      </div>
+    </div>
+
+    <div class="categories-bar" id="categoriesBar">
+      <button class="cat-btn active" data-id="all">كل الموديلات</button>
+    </div>
+
+    <div class="gallery-grid" id="galleryGrid">
+      <div class="empty-state" id="emptyNotice">
+        <i class="fas fa-spinner fa-spin" style="font-size: 1.8rem; margin-bottom: 8px;"></i>
+        <p>جارٍ تحميل الموديلات...</p>
+      </div>
+    </div>
+
+    <div class="section-title-wrap">
+      <div class="section-title">
+        <i class="fas fa-map-marked-alt"></i> صالة العرض والموقع
+      </div>
+    </div>
+
+    <div class="location-card">
+      <div class="info-row">
+        <div class="info-icon"><i class="fas fa-map-pin"></i></div>
+        <div class="info-content">
+          <h4>العنوان</h4>
+          <p id="storeAddress">طرطوس - المنطقة الصناعية - قبال شركة مراسيل للشحن (شارع النجارين)</p>
+        </div>
+      </div>
+
+      <div class="info-row">
+        <div class="info-icon"><i class="far fa-clock"></i></div>
+        <div class="info-content">
+          <h4>أوقات العمل</h4>
+          <p id="storeHours">يومياً لاستقبالكم وتلبية كافة طلبات التفصيل والتجهيز</p>
+        </div>
+      </div>
+
+      <a href="https://maps.app.goo.gl/dsajqVk9DFEQKkt8A" target="_blank" class="gps-btn" id="storeMapLink">
+        <i class="fas fa-location-arrow"></i> فتح الموقع مباشرة على خرائط Google
+      </a>
+    </div>
+  </div>
+
+  <footer class="fixed-footer">
+    <a href="https://wa.me/963986691940?text=مرحباً%20مفروشات%20الأغيد،%20أرغب%20بالاستفسار%20عن%20المفروشات" target="_blank" class="footer-whatsapp-btn">
+      <i class="fab fa-whatsapp" style="font-size: 1.3rem;"></i> تواصل وطلب مباشر عبر واتساب
+    </a>
+  </footer>
+
+  <div id="lightboxModal" class="lightbox-modal" onclick="closeLightbox()">
+    <div class="lightbox-img-wrap" onclick="event.stopPropagation()">
+      <img id="lightboxImg" src="" alt="صورة مكبرة">
+      <div class="lightbox-close-hint" onclick="closeLightbox()">
+        <i class="fas fa-times-circle"></i> اضغط في أي مكان للإغلاق
+      </div>
+    </div>
+  </div>
+
+  <!-- Firebase Scripts -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
+    import { getFirestore, collection, onSnapshot, doc } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCV5hsR_qG6BtGRr5hI7UrPp3KYHPQWoQ4",
+      authDomain: "al-agheed-furniture.firebaseapp.com",
+      projectId: "al-agheed-furniture",
+      storageBucket: "al-agheed-furniture.firebasestorage.app",
+      messagingSenderId: "404000838512",
+      appId: "1:404000838512:web:39ec1c7b35a62266e1f5b5"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    let currentCat = 'all';
+    let allProducts = [];
+    let categoriesMap = {};
+
+    // تحميل الأقسام
+    onSnapshot(collection(db, "categories"), (snap) => {
+      const catBar = document.getElementById('categoriesBar');
+      catBar.innerHTML = `<button class="cat-btn ${currentCat === 'all' ? 'active' : ''}" data-id="all">كل الموديلات</button>`;
+      
+      categoriesMap = {};
+      snap.forEach(docSnap => {
+        const cat = { id: docSnap.id, ...docSnap.data() };
+        categoriesMap[cat.id] = cat.name;
+        
+        const btn = document.createElement('button');
+        btn.className = `cat-btn ${currentCat === cat.id ? 'active' : ''}`;
+        btn.setAttribute('data-id', cat.id);
+        btn.textContent = cat.name;
+        catBar.appendChild(btn);
+      });
+
+      // إعادة تفعيل النقر
+      document.querySelectorAll('.cat-btn').forEach(btn => {
+        btn.onclick = () => {
+          document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          currentCat = btn.getAttribute('data-id');
+          renderGallery();
+        };
+      });
+
+      renderGallery();
+    });
+
+    // تحميل المنتجات
+    onSnapshot(collection(db, "products"), (snap) => {
+      allProducts = [];
+      snap.forEach(docSnap => {
+        allProducts.push({ id: docSnap.id, ...docSnap.data() });
+      });
+      renderGallery();
+    });
+
+    // تحميل بيانات الموقع
+    onSnapshot(doc(db, "settings", "store_info"), (docSnap) => {
+      if (docSnap.exists()) {
+        const data = docSnap.data();
+        if (data.address) document.getElementById('storeAddress').textContent = data.address;
+        if (data.workingHours) document.getElementById('storeHours').textContent = data.workingHours;
+        if (data.mapUrl) document.getElementById('storeMapLink').href = data.mapUrl;
+      }
+    });
+
+    function renderGallery() {
+      const grid = document.getElementById('galleryGrid');
+      const filtered = currentCat === 'all' ? allProducts : allProducts.filter(p => p.categoryId === currentCat);
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div class="empty-state">
+            <i class="fas fa-couch" style="font-size: 2rem; color: var(--color-olive); margin-bottom: 8px;"></i>
+            <p>لا توجد موديلات مضافة في هذا القسم حالياً.</p>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = '';
+      filtered.forEach(item => {
+        const catName = categoriesMap[item.categoryId] || 'عام';
+        const card = document.createElement('div');
+        card.className = 'item-card';
+        card.onclick = () => window.openLightbox(item.imageUrl);
+
+        card.innerHTML = `
+          <div class="item-img-wrap">
+            <img src="${item.imageUrl}" alt="${item.title || 'موديل مفروشات'}" loading="lazy">
+          </div>
+          <div class="item-body">
+            <div class="item-name">${item.title || 'موديل فاخر'}</div>
+            <div class="item-category">${catName}</div>
+            <a href="https://wa.me/963986691940?text=${encodeURIComponent('مرحباً مفروشات الأغيد، أستفسر عن: ' + (item.title || 'هذا الموديل'))}" target="_blank" class="item-inquire-btn" onclick="event.stopPropagation()">
+              <i class="fab fa-whatsapp"></i> استفسار عن السعر
+            </a>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    // دوال التكبير والإغلاق
+    window.openLightbox = (src) => {
+      const modal = document.getElementById('lightboxModal');
+      document.getElementById('lightboxImg').src = src;
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    };
+
+    window.closeLightbox = () => {
+      document.getElementById('lightboxModal').classList.remove('active');
+      document.body.style.overflow = '';
+    };
+  </script>
+</body>
+  </html>
+  
