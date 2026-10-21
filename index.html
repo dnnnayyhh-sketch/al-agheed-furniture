@@ -13,13 +13,14 @@
   <style>
     :root {
       --bg-main: #717862; /* خلفية الموقع كاملة بالزيتي المطلوب */
-      --card-bg: #5f6552; /* خلفية الكروت بدرجة زيتية أغمق لتبرز بوضوح */
-      --card-border: rgba(255, 255, 255, 0.22); /* حدود الكروت بخط فاتح وأنيق */
-      --color-beige: #fbf8f3; /* بيج كريمي فاتح جداً للنصوص والعناوين */
-      --color-olive: #b6c2a1; /* درجة زيتية نضرة ومضيئة للتفاصيل */
+      --card-bg: #5f6552; /* خلفية الكروت بدرجة زيتية متناسقة */
+      --card-border: rgba(216, 195, 158, 0.35); /* حدود الكروت بلون بيج ناعم */
+      --color-beige: #f4ede2; /* بيج فاتح رئيسي للعناوين */
+      --color-beige-gold: #d8c39e; /* بيج ذهبي دافئ للنصوص الفرعية والأزرار */
+      --color-olive: #b2c78a; /* درجة زيتية نضرة للتفاصيل */
       --color-olive-dark: #4b523e; /* زيتي داكن للتدرجات */
-      --text-white: #ffffff;
-      --text-muted: #e2e8df;
+      --text-main: #f4ede2; /* لون الخطوط الأساسي بيج بدلاً من الأبيض */
+      --text-muted: #d8c39e; /* لون الخطوط الفرعية بيج ذهبي */
       --radius: 18px;
       --transition: all 0.3s ease;
     }
@@ -34,7 +35,7 @@
 
     body {
       background-color: var(--bg-main);
-      color: var(--text-white);
+      color: var(--text-main);
       line-height: 1.6;
       padding-bottom: 90px;
       min-height: 100vh;
@@ -58,7 +59,7 @@
       margin: 0 auto 16px;
       border-radius: 50%;
       padding: 4px;
-      background: linear-gradient(135deg, var(--color-beige), var(--color-olive), var(--color-beige));
+      background: linear-gradient(135deg, var(--color-beige-gold), var(--color-olive), var(--color-beige-gold));
       box-shadow: 0 4px 20px rgba(0,0,0,0.25);
       display: flex;
       align-items: center;
@@ -85,10 +86,9 @@
 
     .brand-subtitle {
       font-size: 0.88rem;
-      color: var(--color-beige);
+      color: var(--color-beige-gold);
       font-weight: 700;
       margin-bottom: 10px;
-      opacity: 0.9;
     }
 
     .brand-tagline {
@@ -142,7 +142,7 @@
 
     .badge-card i {
       font-size: 1.1rem;
-      color: var(--color-beige);
+      color: var(--color-beige-gold);
       margin-bottom: 4px;
       display: block;
     }
@@ -150,7 +150,7 @@
     .badge-card span {
       font-size: 0.72rem;
       font-weight: 700;
-      color: var(--text-white);
+      color: var(--text-main);
       display: block;
     }
 
@@ -171,7 +171,7 @@
       text-shadow: 0 1px 4px rgba(0,0,0,0.2);
     }
 
-    .section-title i { color: var(--color-olive); }
+    .section-title i { color: var(--color-beige-gold); }
 
     .categories-bar {
       display: flex;
@@ -197,9 +197,9 @@
     }
 
     .cat-btn.active {
-      background: var(--color-beige);
-      color: #3f4435;
-      border-color: var(--color-beige);
+      background: var(--color-beige-gold);
+      color: #2b3323;
+      border-color: var(--color-beige-gold);
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     }
 
@@ -253,7 +253,7 @@
     .item-name {
       font-size: 0.84rem;
       font-weight: 700;
-      color: var(--text-white);
+      color: var(--text-main);
       margin-bottom: 4px;
       white-space: nowrap;
       overflow: hidden;
@@ -262,16 +262,16 @@
 
     .item-category {
       font-size: 0.72rem;
-      color: var(--color-olive);
+      color: var(--color-beige-gold);
       font-weight: 600;
       margin-bottom: 8px;
     }
 
     .item-inquire-btn {
       width: 100%;
-      background: rgba(255, 255, 255, 0.12);
+      background: rgba(216, 195, 158, 0.15);
       color: var(--color-beige);
-      border: 1px solid rgba(255, 255, 255, 0.25);
+      border: 1px solid rgba(216, 195, 158, 0.35);
       padding: 6px;
       border-radius: 8px;
       font-size: 0.75rem;
@@ -314,9 +314,9 @@
       width: 36px;
       height: 36px;
       border-radius: 10px;
-      background: rgba(255, 255, 255, 0.12);
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      color: var(--color-beige);
+      background: rgba(216, 195, 158, 0.15);
+      border: 1px solid rgba(216, 195, 158, 0.3);
+      color: var(--color-beige-gold);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -332,13 +332,13 @@
 
     .info-content p {
       font-size: 0.8rem;
-      color: #f1f5f9;
+      color: var(--text-muted);
     }
 
     .gps-btn {
       width: 100%;
       background: linear-gradient(135deg, #525946, #3d4333);
-      color: #fff;
+      color: var(--color-beige);
       border: 1px solid var(--card-border);
       padding: 12px;
       border-radius: 12px;
@@ -413,16 +413,16 @@
       max-width: 100%;
       max-height: 80vh;
       border-radius: 14px;
-      border: 1.5px solid var(--color-beige);
+      border: 1.5px solid var(--color-beige-gold);
       box-shadow: 0 0 30px rgba(0,0,0,0.8);
       object-fit: contain;
     }
 
     .lightbox-close-hint {
-      color: var(--color-beige);
+      color: var(--color-beige-gold);
       font-size: 0.8rem;
       margin-top: 12px;
-      opacity: 0.8;
+      opacity: 0.85;
       cursor: pointer;
     }
   </style>
@@ -432,7 +432,7 @@
   <div class="container">
     <header class="header-section">
       <div class="logo-frame">
-        <img src="https://i.postimg.cc/BbZfS0fX/1792571358057.jpg" alt="شعار مفروشات الأغيد">
+        <img src="https://i.postimg.cc/kMZj9qnF/1792605361071.jpg" alt="شعار مفروشات الأغيد">
       </div>
       <h1 class="brand-title">مفروشات الأغيد</h1>
       <p class="brand-subtitle">AL AGHEED FURNITURE</p>
@@ -562,7 +562,7 @@
         catBar.appendChild(btn);
       });
 
-      // إعادة تفعيل النقر
+      // تفعيل النقر على الأقسام
       document.querySelectorAll('.cat-btn').forEach(btn => {
         btn.onclick = () => {
           document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
@@ -601,7 +601,7 @@
       if (filtered.length === 0) {
         grid.innerHTML = `
           <div class="empty-state">
-            <i class="fas fa-couch" style="font-size: 2rem; color: var(--color-olive); margin-bottom: 8px;"></i>
+            <i class="fas fa-couch" style="font-size: 2rem; color: var(--color-beige-gold); margin-bottom: 8px;"></i>
             <p>لا توجد موديلات مضافة في هذا القسم حالياً.</p>
           </div>
         `;
@@ -631,7 +631,7 @@
       });
     }
 
-    // دوال التكبير والإغلاق
+    // دوال نافذة العرض والتكبير والإغلاق
     window.openLightbox = (src) => {
       const modal = document.getElementById('lightboxModal');
       document.getElementById('lightboxImg').src = src;
@@ -645,5 +645,5 @@
     };
   </script>
 </body>
-        </html>
+  </html>
   
