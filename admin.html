@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>لوحة التحكم | مفروشات الأغيد</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0c1410;
+      --card: #131e18;
+      --border: rgba(198, 169, 123, 0.22);
+      --beige: #d8c39e;
+      --olive: #8a9a6b;
+      --red: #e63946;
+      --text: #f8fafc;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', sans-serif; }
+    body { background: var(--bg); color: var(--text); padding: 20px 14px; min-height: 100vh; }
+    .wrap { max-width: 600px; margin: 0 auto; }
+
+    .header-box { text-align: center; margin-bottom: 24px; padding-bottom: 14px; border-bottom: 1px solid var(--border); }
+    .header-box h1 { color: var(--beige); font-size: 1.5rem; margin-bottom: 4px; }
+    .header-box p { color: var(--olive); font-size: 0.85rem; }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px;
+      margin-bottom: 20px;
+    }
+
+    .card h3 {
+      font-size: 1.05rem;
+      color: var(--beige);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    label { font-size: 0.8rem; color: #cbd5e1; margin-bottom: 6px; display: block; }
+    input, select {
+      width: 100%;
+      background: #090e0b;
+      border: 1px solid var(--border);
+      color: #fff;
+      padding: 11px 12px;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      margin-bottom: 14px;
+      outline: none;
+    }
+
+    input:focus, select:focus { border-color: var(--beige); }
+
+    /* تنسيق زر اختيار الملف المباشر */
+    .file-upload-box {
+      border: 2px dashed var(--olive);
+      background: rgba(138, 154, 107, 0.05);
+      border-radius: 12px;
+      padding: 18px 12px;
+      text-align: center;
+      cursor: pointer;
+      margin-bottom: 14px;
+      transition: all 0.2s ease;
+    }
+
+    .file-upload-box:active { background: rgba(138, 154, 107, 0.15); }
+    .file-upload-box i { font-size: 2rem; color: var(--beige); margin-bottom: 8px; display: block; }
+    .file-upload-box p { font-size: 0.82rem; color: #cbd5e1; margin-bottom: 0; font-weight: 600; }
+    #imageFileInput { display: none; }
+
+    .preview-container {
+      display: none;
+      margin-bottom: 14px;
+      text-align: center;
+    }
+
+    .preview-container img {
+      max-height: 160px;
+      max-width: 100%;
+      border-radius: 10px;
+      border: 1px solid var(--beige);
+    }
+
+    .btn {
+      width: 100%;
+      background: linear-gradient(135deg, var(--beige), #a38c67);
+      color: #0c1410;
+      border: none;
+      padding: 11px;
+      border-radius: 10px;
+      font-weight: 800;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .list-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #090e0b;
+      padding: 10px 12px;
+      border-radius: 10px;
+      margin-bottom: 8px;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .list-item span { font-size: 0.85rem; font-weight: 600; }
+    .del-btn { background: none; border: none; color: var(--red); cursor: pointer; font-size: 1rem; }
+
+    .product-row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      background: #090e0b;
+      padding: 8px;
+      border-radius: 10px;
+      margin-bottom: 8px;
+    }
+
+    .product-row img { width: 45px; height: 45px; object-fit: cover; border-radius: 6px; }
+    .product-info { flex: 1; }
+    .product-info h5 { font-size: 0.85rem; color: #fff; }
+    .product-info small { font-size: 0.72rem; color: var(--olive); }
+
+    #loginBox { text-align: center; margin-top: 60px; }
+    #adminContent { display: none; }
+  </style>
+</head>
+<body>
+
+  <div class="wrap">
+
+    <!-- قفل الدخول -->
+    <div id="loginBox" class="card">
+      <i class="fas fa-lock" style="font-size: 2.2rem; color: var(--beige); margin-bottom: 12px;"></i>
+      <h3 style="justify-content: center; margin-bottom: 6px;">لوحة تحكم مفروشات الأغيد</h3>
+      <p style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 16px;">يرجى إدخال رمز المرور السري للدخول</p>
+      <input type="password" id="passInput" placeholder="رمز المرور...">
+      <button class="btn" onclick="checkAuth()"><i class="fas fa-sign-in-alt"></i> دخول</button>
+    </div>
+
+    <!-- لوحة التحكم -->
+    <div id="adminContent">
+      <div class="header-box">
+        <h1>لوحة تحكم المعرض</h1>
+        <p>إدارة الكتالوج، الأقسام، ومعلومات الفرع</p>
+      </div>
+
+      <!-- 1. إدارة الأقسام -->
+      <div class="card">
+        <h3><i class="fas fa-folder-plus"></i> إضافة وتعديل الأقسام</h3>
+        <label>اسم القسم الجديد</label>
+        <input type="text" id="newCatInput" placeholder="مثال: غرف نوم، طاولات سفرة، صالونات...">
+        <button class="btn" onclick="addCategory()"><i class="fas fa-plus"></i> حفظ القسم</button>
+
+        <div style="margin-top: 16px;" id="catsList"></div>
+      </div>
+
+      <!-- 2. إضافة موديل عبر اختيار الصورة مباشرة من الجهاز -->
+      <div class="card">
+        <h3><i class="fas fa-couch"></i> إضافة موديل إلى المعرض</h3>
+        
+        <label>القسم التابع له</label>
+        <select id="prodCategorySelect"></select>
+
+        <label>اسم أو وصف الموديل</label>
+        <input type="text" id="prodTitle" placeholder="مثال: صالون ملكي قماش بيج وزيتي">
+
+        <label>اختر صورة الموديل من الهاتف أو الحاسوب</label>
+        <div class="file-upload-box" onclick="document.getElementById('imageFileInput').click()">
+          <i class="fas fa-cloud-upload-alt"></i>
+          <p id="uploadStatusText">اضغط هنا لاختيار صورة من ألبوم الصور</p>
+        </div>
+        <input type="file" id="imageFileInput" accept="image/*" onchange="handleFileSelect(event)">
+
+        <div class="preview-container" id="previewContainer">
+          <img id="previewImg" src="" alt="معاينة الصورة">
+        </div>
+
+        <button class="btn" id="submitProductBtn" onclick="addProduct()"><i class="fas fa-check-circle"></i> نشر الموديل في المعرض</button>
+      </div>
+
+      <!-- 3. الموديلات المعروضة -->
+      <div class="card">
+        <h3><i class="fas fa-images"></i> الموديلات المعروضة حالياً</h3>
+        <div id="productsList"></div>
+      </div>
+
+      <!-- 4. بيانات المعرض -->
+      <div class="card">
+        <h3><i class="fas fa-map-marker-alt"></i> بيانات المعرض والموقع</h3>
+        <label>العنوان التفصيلي</label>
+        <input type="text" id="setAddress">
+
+        <label>أوقات وساعات الدوام</label>
+        <input type="text" id="setHours">
+
+        <label>رابط موقع Google Maps</label>
+        <input type="url" id="setMap">
+
+        <button class="btn" onclick="saveStoreInfo()"><i class="fas fa-save"></i> حفظ تعديلات الموقع</button>
+      </div>
+    </div>
+
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
+    import { getFirestore, collection, addDoc, deleteDoc, doc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCV5hsR_qG6BtGRr5hI7UrPp3KYHPQWoQ4",
+      authDomain: "al-agheed-furniture.firebaseapp.com",
+      projectId: "al-agheed-furniture",
+      storageBucket: "al-agheed-furniture.firebasestorage.app",
+      messagingSenderId: "404000838512",
+      appId: "1:404000838512:web:39ec1c7b35a62266e1f5b5"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    let categoriesMap = {};
+    let selectedImageBase64 = null;
+
+    // تسجيل الدخول
+    window.checkAuth = () => {
+      const pass = document.getElementById('passInput').value;
+      if (pass === "123456" || pass === "agheed2026") {
+        document.getElementById('loginBox').style.display = 'none';
+        document.getElementById('adminContent').style.display = 'block';
+        initAdminData();
+      } else {
+        alert("رمز المرور غير صحيح!");
+      }
+    };
+
+    // معالجة واختيار الصورة من الهاتف وضغطها تلقائياً
+    window.handleFileSelect = (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = (readerEvent) => {
+        const img = new Image();
+        img.onload = () => {
+          // تصغير أبعاد الصورة لتقليل الحجم وتسريع التحميل الفوري
+          const canvas = document.createElement('canvas');
+          const maxDim = 900;
+          let w = img.width;
+          let h = img.height;
+
+          if (w > h && w > maxDim) {
+            h = Math.round((h * maxDim) / w);
+            w = maxDim;
+          } else if (h > maxDim) {
+            w = Math.round((w * maxDim) / h);
+            h = maxDim;
+          }
+
+          canvas.width = w;
+          canvas.height = h;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, w, h);
+
+          // تحويل الصورة لصيغة مضغوطة عالية الجودة
+          selectedImageBase64 = canvas.toDataURL('image/jpeg', 0.8);
+          
+          document.getElementById('previewImg').src = selectedImageBase64;
+          document.getElementById('previewContainer').style.display = 'block';
+          document.getElementById('uploadStatusText').innerHTML = `<span style="color:var(--beige); font-weight:bold;">✓ تم اختيار الصورة: ${file.name}</span>`;
+        };
+        img.src = readerEvent.target.result;
+      };
+      reader.readAsDataURL(file);
+    };
+
+    function initAdminData() {
+      // مزامنة الأقسام
+      onSnapshot(collection(db, "categories"), (snap) => {
+        const list = document.getElementById('catsList');
+        const select = document.getElementById('prodCategorySelect');
+        list.innerHTML = '';
+        select.innerHTML = '';
+        categoriesMap = {};
+
+        snap.forEach(docSnap => {
+          const cat = { id: docSnap.id, ...docSnap.data() };
+          categoriesMap[cat.id] = cat.name;
+
+          list.innerHTML += `
+            <div class="list-item">
+              <span>${cat.name}</span>
+              <button class="del-btn" onclick="window.deleteCategory('${cat.id}')"><i class="fas fa-trash-alt"></i></button>
+            </div>
+          `;
+
+          select.innerHTML += `<option value="${cat.id}">${cat.name}</option>`;
+        });
+      });
+
+      // مزامنة الموديلات
+      onSnapshot(collection(db, "products"), (snap) => {
+        const list = document.getElementById('productsList');
+        list.innerHTML = '';
+
+        snap.forEach(docSnap => {
+          const item = { id: docSnap.id, ...docSnap.data() };
+          const cName = categoriesMap[item.categoryId] || 'عام';
+          list.innerHTML += `
+            <div class="product-row">
+              <img src="${item.imageUrl}" alt="item">
+              <div class="product-info">
+                <h5>${item.title || 'موديل بدون اسم'}</h5>
+                <small>${cName}</small>
+              </div>
+              <button class="del-btn" onclick="window.deleteProduct('${item.id}')"><i class="fas fa-trash-alt"></i></button>
+            </div>
+          `;
+        });
+      });
+
+      // جلب وتعبئة بيانات الموقع
+      onSnapshot(doc(db, "settings", "store_info"), (docSnap) => {
+        if (docSnap.exists()) {
+          const d = docSnap.data();
+          if (d.address) document.getElementById('setAddress').value = d.address;
+          if (d.workingHours) document.getElementById('setHours').value = d.workingHours;
+          if (d.mapUrl) document.getElementById('setMap').value = d.mapUrl;
+        } else {
+          document.getElementById('setAddress').value = 'طرطوس - المنطقة الصناعية - قبال شركة مراسيل للشحن (شارع النجارين)';
+          document.getElementById('setHours').value = 'يومياً لاستقبالكم وتلبية كافة طلبات التفصيل والتجهيز';
+          document.getElementById('setMap').value = 'https://maps.app.goo.gl/dsajqVk9DFEQKkt8A';
+        }
+      });
+    }
+
+    // إضافة قسم
+    window.addCategory = async () => {
+      const val = document.getElementById('newCatInput').value.trim();
+      if (!val) return;
+      await addDoc(collection(db, "categories"), { name: val, createdAt: Date.now() });
+      document.getElementById('newCatInput').value = '';
+    };
+
+    // حذف قسم
+    window.deleteCategory = async (id) => {
+      if (confirm("هل تريد بالتأكيد حذف هذا القسم؟")) {
+        await deleteDoc(doc(db, "categories", id));
+      }
+    };
+
+    // إضافة ونشر الموديل بالصورة المباشرة
+    window.addProduct = async () => {
+      const categoryId = document.getElementById('prodCategorySelect').value;
+      const title = document.getElementById('prodTitle').value.trim();
+
+      if (!selectedImageBase64) {
+        alert("يرجى اختيار صورة الموديل أولاً بالضغط على الصندوق المخصص");
+        return;
+      }
+
+      const btn = document.getElementById('submitProductBtn');
+      btn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> جارٍ النشر...`;
+      btn.disabled = true;
+
+      try {
+        await addDoc(collection(db, "products"), {
+          categoryId,
+          title,
+          imageUrl: selectedImageBase64,
+          createdAt: Date.now()
+        });
+
+        document.getElementById('prodTitle').value = '';
+        document.getElementById('imageFileInput').value = '';
+        selectedImageBase64 = null;
+        document.getElementById('previewContainer').style.display = 'none';
+        document.getElementById('uploadStatusText').textContent = 'اضغط هنا لاختيار صورة من ألبوم الصور';
+        alert("تمت إضافة الموديل ونشره في المعرض بنجاح!");
+      } catch (err) {
+        alert("حدث خطأ أثناء الإضافة: " + err.message);
+      } finally {
+        btn.innerHTML = `<i class="fas fa-check-circle"></i> نشر الموديل في المعرض`;
+        btn.disabled = false;
+      }
+    };
+
+    // حذف موديل
+    window.deleteProduct = async (id) => {
+      if (confirm("هل تريد حذف هذا الموديل من المعرض؟")) {
+        await deleteDoc(doc(db, "products", id));
+      }
+    };
+
+    // حفظ بيانات الموقع
+    window.saveStoreInfo = async () => {
+      const address = document.getElementById('setAddress').value.trim();
+      const workingHours = document.getElementById('setHours').value.trim();
+      const mapUrl = document.getElementById('setMap').value.trim();
+
+      await setDoc(doc(db, "settings", "store_info"), {
+        address,
+        workingHours,
+        mapUrl
+      }, { merge: true });
+
+      alert("تم حفظ وتحديث بيانات الموقع بنجاح!");
+    };
+  </script>
+</body>
+</html>
