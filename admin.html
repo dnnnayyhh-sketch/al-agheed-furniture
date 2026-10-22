@@ -10,13 +10,16 @@
 
   <style>
     :root {
-      --bg: #0c1410;
-      --card: #131e18;
-      --border: rgba(198, 169, 123, 0.22);
-      --beige: #d8c39e;
-      --olive: #8a9a6b;
-      --red: #e63946;
-      --text: #f8fafc;
+      --bg: #717862; /* خلفية الصفحة بالزيتي المعتمد */
+      --card: #5f6552; /* خلفية الكروت بدرجة زيتية أنيقة */
+      --card-inner: #4d5342; /* خلفية الحقول والعناصر الداخلية */
+      --border: rgba(216, 195, 158, 0.35); /* حدود بيج ذهبي ناعمة */
+      --beige: #f4ede2; /* بيج فاتح للعناوين الرئيسية */
+      --beige-gold: #d8c39e; /* بيج ذهبي للنصوص الفرعية والأزرار */
+      --olive-light: #b2c78a; /* لمسة زيتية نضرة */
+      --red: #ff6b6b; /* أحمر ناعم ومتناسق لأزرار الحذف */
+      --text: #f4ede2; /* لون الخطوط الأساسي بيج */
+      --text-muted: #e2e8df;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', sans-serif; }
@@ -24,8 +27,8 @@
     .wrap { max-width: 600px; margin: 0 auto; }
 
     .header-box { text-align: center; margin-bottom: 24px; padding-bottom: 14px; border-bottom: 1px solid var(--border); }
-    .header-box h1 { color: var(--beige); font-size: 1.5rem; margin-bottom: 4px; }
-    .header-box p { color: var(--olive); font-size: 0.85rem; }
+    .header-box h1 { color: var(--beige); font-size: 1.5rem; margin-bottom: 4px; font-weight: 800; }
+    .header-box p { color: var(--beige-gold); font-size: 0.88rem; font-weight: 600; }
 
     .card {
       background: var(--card);
@@ -33,6 +36,7 @@
       border-radius: 16px;
       padding: 16px;
       margin-bottom: 20px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.18);
     }
 
     .card h3 {
@@ -42,27 +46,30 @@
       display: flex;
       align-items: center;
       gap: 8px;
+      font-weight: 700;
     }
 
-    label { font-size: 0.8rem; color: #cbd5e1; margin-bottom: 6px; display: block; }
+    label { font-size: 0.82rem; color: var(--beige-gold); margin-bottom: 6px; display: block; font-weight: 600; }
     input, select {
       width: 100%;
-      background: #090e0b;
+      background: var(--card-inner);
       border: 1px solid var(--border);
-      color: #fff;
+      color: var(--beige);
       padding: 11px 12px;
       border-radius: 10px;
       font-size: 0.85rem;
       margin-bottom: 14px;
       outline: none;
+      transition: border-color 0.2s ease;
     }
 
-    input:focus, select:focus { border-color: var(--beige); }
+    input::placeholder { color: rgba(244, 237, 226, 0.5); }
+    input:focus, select:focus { border-color: var(--beige-gold); }
 
     /* تنسيق زر اختيار الملف المباشر */
     .file-upload-box {
-      border: 2px dashed var(--olive);
-      background: rgba(138, 154, 107, 0.05);
+      border: 2px dashed var(--beige-gold);
+      background: rgba(216, 195, 158, 0.08);
       border-radius: 12px;
       padding: 18px 12px;
       text-align: center;
@@ -71,9 +78,9 @@
       transition: all 0.2s ease;
     }
 
-    .file-upload-box:active { background: rgba(138, 154, 107, 0.15); }
-    .file-upload-box i { font-size: 2rem; color: var(--beige); margin-bottom: 8px; display: block; }
-    .file-upload-box p { font-size: 0.82rem; color: #cbd5e1; margin-bottom: 0; font-weight: 600; }
+    .file-upload-box:active { background: rgba(216, 195, 158, 0.16); }
+    .file-upload-box i { font-size: 2rem; color: var(--beige-gold); margin-bottom: 8px; display: block; }
+    .file-upload-box p { font-size: 0.84rem; color: var(--beige); margin-bottom: 0; font-weight: 600; }
     #imageFileInput { display: none; }
 
     .preview-container {
@@ -86,13 +93,14 @@
       max-height: 160px;
       max-width: 100%;
       border-radius: 10px;
-      border: 1px solid var(--beige);
+      border: 1.5px solid var(--beige-gold);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
     }
 
     .btn {
       width: 100%;
-      background: linear-gradient(135deg, var(--beige), #a38c67);
-      color: #0c1410;
+      background: linear-gradient(135deg, var(--beige-gold), #bfa780);
+      color: #2e3425;
       border: none;
       padding: 11px;
       border-radius: 10px;
@@ -103,36 +111,41 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
+      transition: transform 0.15s ease, box-shadow 0.2s ease;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.18);
     }
+
+    .btn:active { transform: scale(0.98); }
 
     .list-item {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: #090e0b;
+      background: var(--card-inner);
       padding: 10px 12px;
       border-radius: 10px;
       margin-bottom: 8px;
-      border: 1px solid rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
     }
 
-    .list-item span { font-size: 0.85rem; font-weight: 600; }
-    .del-btn { background: none; border: none; color: var(--red); cursor: pointer; font-size: 1rem; }
+    .list-item span { font-size: 0.85rem; font-weight: 600; color: var(--beige); }
+    .del-btn { background: none; border: none; color: var(--red); cursor: pointer; font-size: 1rem; padding: 4px; }
 
     .product-row {
       display: flex;
       gap: 10px;
       align-items: center;
-      background: #090e0b;
-      padding: 8px;
+      background: var(--card-inner);
+      padding: 8px 12px;
       border-radius: 10px;
       margin-bottom: 8px;
+      border: 1px solid var(--border);
     }
 
-    .product-row img { width: 45px; height: 45px; object-fit: cover; border-radius: 6px; }
+    .product-row img { width: 48px; height: 48px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border); }
     .product-info { flex: 1; }
-    .product-info h5 { font-size: 0.85rem; color: #fff; }
-    .product-info small { font-size: 0.72rem; color: var(--olive); }
+    .product-info h5 { font-size: 0.86rem; color: var(--beige); margin-bottom: 2px; }
+    .product-info small { font-size: 0.74rem; color: var(--beige-gold); font-weight: 600; }
 
     #loginBox { text-align: center; margin-top: 60px; }
     #adminContent { display: none; }
@@ -144,9 +157,9 @@
 
     <!-- قفل الدخول -->
     <div id="loginBox" class="card">
-      <i class="fas fa-lock" style="font-size: 2.2rem; color: var(--beige); margin-bottom: 12px;"></i>
+      <i class="fas fa-lock" style="font-size: 2.2rem; color: var(--beige-gold); margin-bottom: 12px;"></i>
       <h3 style="justify-content: center; margin-bottom: 6px;">لوحة تحكم مفروشات الأغيد</h3>
-      <p style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 16px;">يرجى إدخال رمز المرور السري للدخول</p>
+      <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 16px;">يرجى إدخال رمز المرور السري للدخول</p>
       <input type="password" id="passInput" placeholder="رمز المرور...">
       <button class="btn" onclick="checkAuth()"><i class="fas fa-sign-in-alt"></i> دخول</button>
     </div>
